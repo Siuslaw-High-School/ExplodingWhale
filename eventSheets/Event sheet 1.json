@@ -370,9 +370,9 @@
 						{
 							"id": "set-angle",
 							"objectClass": "Bullet",
-							"sid": 645310529922000,
+							"sid": 424369376532646,
 							"parameters": {
-								"angle": "Player.8Direction.MovingAngle"
+								"angle": "random(0,360)"
 							}
 						},
 						{
@@ -1449,9 +1449,9 @@
 						{
 							"id": "every-x-seconds",
 							"objectClass": "System",
-							"sid": 593844523953142,
+							"sid": 476812868738039,
 							"parameters": {
-								"interval-seconds": "random(10,20)"
+								"interval-seconds": "random(30,60)"
 							}
 						}
 					],
