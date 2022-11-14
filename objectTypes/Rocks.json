@@ -1,0 +1,26 @@
+{
+	"name": "Rocks",
+	"plugin-id": "TiledBg",
+	"sid": 272438459511559,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "solid",
+			"name": "Solid",
+			"sid": 465264425863693
+		}
+	],
+	"effectTypes": [],
+	"image": {
+		"width": 43,
+		"height": 42,
+		"originX": 0.5,
+		"originY": 0.5,
+		"originalSource": "",
+		"exportFormat": "lossless",
+		"exportQuality": 0.8,
+		"imageSpriteId": 3350514,
+		"useCollisionPoly": true
+	}
+}

@@ -1,0 +1,101 @@
+{
+	"name": "Event sheet 2",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 985764650222894
+				}
+			],
+			"actions": [
+				{
+					"id": "get-item",
+					"objectClass": "LocalStorage",
+					"sid": 383172926546128,
+					"parameters": {
+						"key": "\"HighScore\""
+					}
+				}
+			],
+			"sid": 947026574376854
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-item-get",
+					"objectClass": "LocalStorage",
+					"sid": 188516580442554,
+					"parameters": {
+						"key": "\"HighScore\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 350227247939442,
+					"parameters": {
+						"variable": "HiScore",
+						"value": "int(LocalStorage.ItemValue)"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "HiScore",
+					"sid": 631617728835073,
+					"parameters": {
+						"text": "\"Hi Score: \" & HiScore"
+					}
+				}
+			],
+			"sid": 598191062383163
+		},
+		{
+			"eventType": "block",
+			"conditions": [],
+			"actions": [],
+			"sid": 661573670065808
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-any-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 227814124237425
+				},
+				{
+					"id": "mouse-button-is-down",
+					"objectClass": "Mouse",
+					"sid": 656570408958445,
+					"parameters": {
+						"mouse-button": "left"
+					}
+				},
+				{
+					"id": "on-any-touch-end",
+					"objectClass": "Touch",
+					"sid": 881811274254619
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 465707588963082,
+					"parameters": {
+						"layout": "MainLevel"
+					}
+				}
+			],
+			"sid": 852387608236246,
+			"isOrBlock": true
+		}
+	],
+	"sid": 831448257159878
+}

@@ -1,0 +1,1568 @@
+{
+	"name": "Event sheet 1",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "Timer",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 577643893517774
+		},
+		{
+			"eventType": "variable",
+			"name": "playerHealth",
+			"type": "number",
+			"initialValue": "10",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 282669451307474
+		},
+		{
+			"eventType": "variable",
+			"name": "Score",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 523011774661300
+		},
+		{
+			"eventType": "variable",
+			"name": "HiScore",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 360389876049896
+		},
+		{
+			"eventType": "variable",
+			"name": "BestTime",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 312383599192210
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Setup",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 130960056910012
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Player",
+							"sid": 588364435914153,
+							"parameters": {
+								"instance-variable": "healthCount",
+								"value": "10"
+							}
+						},
+						{
+							"callFunction": "dataDefault",
+							"sid": 291210307346001
+						},
+						{
+							"id": "set-key",
+							"objectClass": "Dictionary",
+							"sid": 872135090214289,
+							"parameters": {
+								"key": "\"Health\"",
+								"value": "Player.healthCount"
+							}
+						},
+						{
+							"id": "get-item",
+							"objectClass": "LocalStorage",
+							"sid": 299327072954615,
+							"parameters": {
+								"key": "\"HighScore\""
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 611091002257750,
+							"parameters": {
+								"variable": "Score",
+								"value": "0"
+							}
+						}
+					],
+					"sid": 195273062417880
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-item-get",
+							"objectClass": "LocalStorage",
+							"sid": 893274669361486,
+							"parameters": {
+								"key": "\"HighScore\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 541566592703837,
+							"parameters": {
+								"variable": "HiScore",
+								"value": "int(LocalStorage.ItemValue)"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "HiScore",
+							"sid": 928988136395366,
+							"parameters": {
+								"text": "\"Hi Score: \" & HiScore"
+							}
+						}
+					],
+					"sid": 567191924510853
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [],
+					"sid": 278977677527241
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [],
+					"sid": 551866636003624
+				},
+				{
+					"functionName": "dataDefault",
+					"functionDescription": "test",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "add-key",
+							"objectClass": "Dictionary",
+							"sid": 759406590831139,
+							"parameters": {
+								"key": "\"Health\"",
+								"value": "10"
+							}
+						}
+					],
+					"sid": 109275867730430
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 478619404548020
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "HealthCount",
+							"sid": 773495258318780,
+							"parameters": {
+								"text": "Dictionary.Get(\"Health\")"
+							}
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "healthBarTNT",
+							"sid": 943456036367979,
+							"parameters": {
+								"frame-number": "Dictionary.Get(\"Health\")"
+							}
+						},
+						{
+							"id": "move-to-top",
+							"objectClass": "Player",
+							"sid": 712424319904403
+						}
+					],
+					"sid": 853796917079922
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 432556408908123,
+							"parameters": {
+								"interval-seconds": "3"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-image-offset-x",
+							"objectClass": "TiledBackground3",
+							"sid": 599750400303292,
+							"parameters": {
+								"offset-x": "2"
+							}
+						},
+						{
+							"id": "set-image-offset-y",
+							"objectClass": "TiledBackground3",
+							"sid": 456515573924821,
+							"parameters": {
+								"offset-y": "2"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 915425464778466,
+							"parameters": {
+								"seconds": "2"
+							}
+						},
+						{
+							"id": "set-image-offset-x",
+							"objectClass": "TiledBackground3",
+							"sid": 348863440753017,
+							"parameters": {
+								"offset-x": "0"
+							}
+						},
+						{
+							"id": "set-image-offset-y",
+							"objectClass": "TiledBackground3",
+							"sid": 138888181913088,
+							"parameters": {
+								"offset-y": "0"
+							}
+						}
+					],
+					"sid": 379019908268978
+				}
+			],
+			"sid": 549850367662592
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Timer",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 399031302427054
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 487867179518767,
+							"parameters": {
+								"variable": "Timer",
+								"value": "0"
+							}
+						}
+					],
+					"sid": 340735805190967
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 976635274336401,
+							"parameters": {
+								"interval-seconds": "1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 797845584012126,
+							"parameters": {
+								"variable": "Timer",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "Clock",
+							"sid": 996789536795199,
+							"parameters": {
+								"text": "zeropad(floor(Timer/60),1) & \":\" & zeropad(floor(Timer%60),2)"
+							}
+						}
+					],
+					"sid": 554011519696416
+				}
+			],
+			"sid": 779833075510052
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Player",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 210397005505869,
+							"parameters": {
+								"interval-seconds": ".8"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "spawn-another-object",
+							"objectClass": "Player",
+							"sid": 239398229015114,
+							"parameters": {
+								"object": "Bullet",
+								"layer": "0",
+								"image-point": "0",
+								"create-hierarchy": false
+							}
+						},
+						{
+							"id": "set-angle",
+							"objectClass": "Bullet",
+							"sid": 645310529922000,
+							"parameters": {
+								"angle": "Player.8Direction.MovingAngle"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 366950415345934,
+							"parameters": {
+								"seconds": ".1"
+							}
+						}
+					],
+					"sid": 298439154366324
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Bullet",
+							"sid": 100858320331341,
+							"parameters": {
+								"object": "Seagull"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "Bullet",
+							"sid": 612785225353458
+						},
+						{
+							"id": "destroy",
+							"objectClass": "Seagull",
+							"sid": 316074368779408
+						},
+						{
+							"id": "spawn-another-object",
+							"objectClass": "Seagull",
+							"sid": 756360438001700,
+							"parameters": {
+								"object": "Explosion",
+								"layer": "0",
+								"image-point": "0",
+								"create-hierarchy": false
+							}
+						},
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 504774749088811,
+							"parameters": {
+								"variable": "Score",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "Score",
+							"sid": 921172944418025,
+							"parameters": {
+								"text": "\"Score: \" & Score"
+							}
+						}
+					],
+					"sid": 539602826611619
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Bullet",
+							"sid": 615402207932391,
+							"parameters": {
+								"object": "Crab"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "Bullet",
+							"sid": 935657112294224
+						},
+						{
+							"id": "destroy",
+							"objectClass": "Crab",
+							"sid": 499608582051433
+						},
+						{
+							"id": "spawn-another-object",
+							"objectClass": "Crab",
+							"sid": 478029587892687,
+							"parameters": {
+								"object": "Explosion",
+								"layer": "0",
+								"image-point": "0",
+								"create-hierarchy": false
+							}
+						},
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 629393093157338,
+							"parameters": {
+								"variable": "Score",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "Score",
+							"sid": 420122698941711,
+							"parameters": {
+								"text": "\"Score: \" & Score"
+							}
+						}
+					],
+					"sid": 749025051146541
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 879413256267388,
+							"parameters": {
+								"key": 39
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-mirrored",
+							"objectClass": "Player",
+							"sid": 744908518653368,
+							"parameters": {
+								"state": "mirrored"
+							}
+						}
+					],
+					"sid": 445666544673173
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 958671456902494,
+							"parameters": {
+								"key": 37
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-mirrored",
+							"objectClass": "Player",
+							"sid": 288686133581745,
+							"parameters": {
+								"state": "not-mirrored"
+							}
+						}
+					],
+					"sid": 926261337849335
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [],
+					"sid": 514165813609441
+				}
+			],
+			"sid": 941361981045007
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Death",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 738668528806460,
+							"parameters": {
+								"first-value": "Player.healthCount",
+								"comparison": 3,
+								"second-value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "spawn-another-object",
+							"objectClass": "Player",
+							"sid": 293230520938926,
+							"parameters": {
+								"object": "Explosion",
+								"layer": "0",
+								"image-point": "0",
+								"create-hierarchy": false
+							}
+						},
+						{
+							"id": "set-scale",
+							"objectClass": "Explosion",
+							"sid": 431737741165952,
+							"parameters": {
+								"scale": "2.5"
+							}
+						},
+						{
+							"id": "set-fade-in-time",
+							"objectClass": "Explosion",
+							"sid": 147610436279162,
+							"behaviorType": "Fade",
+							"parameters": {
+								"fade-in-time": "3"
+							}
+						},
+						{
+							"id": "set-wait-time",
+							"objectClass": "Explosion",
+							"sid": 865045736860265,
+							"behaviorType": "Fade",
+							"parameters": {
+								"wait-time": ".3"
+							}
+						},
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 971368467267573,
+							"parameters": {
+								"object-to-create": "GameOver",
+								"layer": "1",
+								"x": "55",
+								"y": "65",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "Player",
+							"sid": 792189377932798
+						},
+						{
+							"id": "destroy",
+							"objectClass": "PowerUp",
+							"sid": 281988883860097
+						},
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 780566353944373,
+							"parameters": {
+								"group-name": "\"Seagull\"",
+								"state": "deactivated"
+							}
+						},
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 498751847871310,
+							"parameters": {
+								"group-name": "\"Player\"",
+								"state": "deactivated"
+							}
+						},
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 235984516730427,
+							"parameters": {
+								"group-name": "\"Timer\"",
+								"state": "deactivated"
+							}
+						},
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 674297057647792,
+							"parameters": {
+								"group-name": "\"Crab\"",
+								"state": "deactivated"
+							}
+						},
+						{
+							"id": "stop-loop",
+							"objectClass": "System",
+							"sid": 324544202698588
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 353101627821076,
+							"parameters": {
+								"seconds": "6"
+							}
+						},
+						{
+							"id": "restart-layout",
+							"objectClass": "System",
+							"sid": 678685070084296
+						}
+					],
+					"sid": 810130028358408
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 856450342489940,
+							"parameters": {
+								"first-value": "Player.healthCount",
+								"comparison": 3,
+								"second-value": "0"
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 273321144533081,
+							"parameters": {
+								"first-value": "HiScore",
+								"comparison": 2,
+								"second-value": "Score"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 445096124734506,
+							"parameters": {
+								"variable": "HiScore",
+								"value": "Score"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "HiScore",
+							"sid": 116198192022140,
+							"parameters": {
+								"text": "\"Hi-Score \" & HiScore"
+							}
+						},
+						{
+							"id": "set-item",
+							"objectClass": "LocalStorage",
+							"sid": 509954915698051,
+							"parameters": {
+								"key": "\"HighScore\"",
+								"value": "HiScore"
+							}
+						}
+					],
+					"sid": 798344853793782
+				}
+			],
+			"sid": 316588396316586
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Power Up",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 773163867987044
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "PowerUp",
+							"sid": 140989135224457,
+							"parameters": {
+								"instance-variable": "powerupCount",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "oldHeart",
+							"sid": 623289999426371,
+							"parameters": {
+								"instance-variable": "heartCount",
+								"value": "0"
+							}
+						}
+					],
+					"sid": 873263818399791
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 303117669487531,
+							"parameters": {
+								"first-value": "PowerUp.powerupCount",
+								"comparison": 0,
+								"second-value": "0"
+							}
+						},
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 436625028505363,
+							"parameters": {
+								"interval-seconds": "random(10,30)"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 143570878154221,
+							"parameters": {
+								"object-to-create": "PowerUp",
+								"layer": "0",
+								"x": "random(10,620)",
+								"y": "random(25,340)",
+								"create-hierarchy": true,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "set-enabled",
+							"objectClass": "PowerUp",
+							"sid": 868185007444649,
+							"behaviorType": "Orbit",
+							"parameters": {
+								"state": "disabled"
+							}
+						},
+						{
+							"id": "add-to-instvar",
+							"objectClass": "PowerUp",
+							"sid": 291566359463689,
+							"parameters": {
+								"instance-variable": "powerupCount",
+								"value": "1"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 678823245655265,
+							"parameters": {
+								"seconds": "random(10,20)"
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "PowerUp",
+							"sid": 368860599107842
+						}
+					],
+					"sid": 242549998192283
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 765348440421861
+						}
+					],
+					"actions": [],
+					"sid": 127898833157985
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "Player",
+							"sid": 661435916412029,
+							"parameters": {
+								"object": "PowerUp"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "pin",
+							"objectClass": "PowerUp",
+							"sid": 473044383993632,
+							"behaviorType": "Orbit",
+							"parameters": {
+								"target": "Player"
+							}
+						},
+						{
+							"id": "set-enabled",
+							"objectClass": "PowerUp",
+							"sid": 399998792364881,
+							"behaviorType": "Orbit",
+							"parameters": {
+								"state": "enabled"
+							}
+						},
+						{
+							"id": "reset-total-rotation",
+							"objectClass": "PowerUp",
+							"sid": 519455257904841,
+							"behaviorType": "Orbit"
+						},
+						{
+							"id": "set-rotation",
+							"objectClass": "PowerUp",
+							"sid": 996602012678139,
+							"behaviorType": "Orbit",
+							"parameters": {
+								"angle": "PowerUp.Orbit.Rotation + 180"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 397497041439862,
+							"parameters": {
+								"seconds": "15"
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "PowerUp",
+							"sid": 647889022009825
+						},
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "PowerUp",
+							"sid": 644995488860775,
+							"parameters": {
+								"instance-variable": "powerupCount",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 849089587860123
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "PowerUp",
+							"sid": 119110129796492,
+							"parameters": {
+								"object": "Seagull"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "Seagull",
+							"sid": 578087666785376
+						},
+						{
+							"id": "spawn-another-object",
+							"objectClass": "Seagull",
+							"sid": 965674508728811,
+							"parameters": {
+								"object": "Explosion",
+								"layer": "0",
+								"image-point": "0",
+								"create-hierarchy": false
+							}
+						},
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 560037062708756,
+							"parameters": {
+								"variable": "Score",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "Score",
+							"sid": 990983456275859,
+							"parameters": {
+								"text": "\"Score: \" & Score"
+							}
+						}
+					],
+					"sid": 720167171576849
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "PowerUp",
+							"sid": 635004372918706,
+							"parameters": {
+								"object": "Crab"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "Crab",
+							"sid": 836415631061761
+						},
+						{
+							"id": "spawn-another-object",
+							"objectClass": "Crab",
+							"sid": 124366764299768,
+							"parameters": {
+								"object": "Explosion",
+								"layer": "0",
+								"image-point": "0",
+								"create-hierarchy": false
+							}
+						},
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 661351521476293,
+							"parameters": {
+								"variable": "Score",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "Score",
+							"sid": 654599359956065,
+							"parameters": {
+								"text": "\"Score: \" & Score"
+							}
+						}
+					],
+					"sid": 253942014231405
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [],
+					"sid": 659994062964028
+				}
+			],
+			"sid": 813648403651859
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Seagull",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 191256068390899,
+							"parameters": {
+								"interval-seconds": "3 - Timer*0.001"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 200809526032631,
+							"parameters": {
+								"object-to-create": "Seagull",
+								"layer": "0",
+								"x": "random(0,640)",
+								"y": "random(0,360)",
+								"create-hierarchy": true,
+								"template-name": "\"\""
+							}
+						}
+					],
+					"sid": 394408318186602
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 496479956294754,
+							"parameters": {
+								"first-value": "Timer",
+								"comparison": 4,
+								"second-value": "45"
+							}
+						},
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 478171405388309,
+							"parameters": {
+								"interval-seconds": "2 - Timer*0.002"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 220510187479787,
+							"parameters": {
+								"object-to-create": "Seagull",
+								"layer": "0",
+								"x": "random(0,640)",
+								"y": "random(0,360)",
+								"create-hierarchy": true,
+								"template-name": "\"\""
+							}
+						}
+					],
+					"sid": 291948551100118
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 628754473635331,
+							"parameters": {
+								"interval-seconds": "random(.8,1.5)"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "move-to-position",
+							"objectClass": "Seagull",
+							"sid": 166787067578082,
+							"behaviorType": "MoveTo",
+							"parameters": {
+								"x": "Player.X",
+								"y": "Player.Y",
+								"mode": "add-waypoint"
+							}
+						}
+					],
+					"sid": 411777645059064
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "Seagull",
+							"sid": 293870840274222,
+							"parameters": {
+								"object": "Player"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "flash",
+							"objectClass": "Player",
+							"sid": 324441710078880,
+							"behaviorType": "Flash",
+							"parameters": {
+								"on-time": "0.1",
+								"off-time": "0.1",
+								"duration": ".5"
+							}
+						},
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "Player",
+							"sid": 719873846637076,
+							"parameters": {
+								"instance-variable": "healthCount",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-key",
+							"objectClass": "Dictionary",
+							"sid": 943366411379632,
+							"parameters": {
+								"key": "\"Health\"",
+								"value": "Player.healthCount"
+							}
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "healthBarTNT",
+							"sid": 643967797569110,
+							"parameters": {
+								"frame-number": "Dictionary.Get(\"Health\")"
+							}
+						},
+						{
+							"id": "spawn-another-object",
+							"objectClass": "Seagull",
+							"sid": 926312934645156,
+							"parameters": {
+								"object": "Explosion",
+								"layer": "0",
+								"image-point": "0",
+								"create-hierarchy": false
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "Seagull",
+							"sid": 740728958153626
+						}
+					],
+					"sid": 412689503840259
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [],
+					"sid": 222688554329103
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 831724387429751,
+							"parameters": {
+								"first-value": "Seagull.X",
+								"comparison": 2,
+								"second-value": "Player.X"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-mirrored",
+							"objectClass": "Seagull",
+							"sid": 587301156078472,
+							"parameters": {
+								"state": "mirrored"
+							}
+						}
+					],
+					"sid": 276452219591293
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 961032533484201,
+							"parameters": {
+								"first-value": "Seagull.X",
+								"comparison": 4,
+								"second-value": "Player.X"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-mirrored",
+							"objectClass": "Seagull",
+							"sid": 661239381546369,
+							"parameters": {
+								"state": "not-mirrored"
+							}
+						}
+					],
+					"sid": 481751894815918
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-flashing",
+							"objectClass": "Player",
+							"sid": 605525117173860,
+							"behaviorType": "Flash"
+						}
+					],
+					"actions": [],
+					"sid": 990064922595764
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [],
+					"sid": 376580994282117
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [],
+					"sid": 483127128504326
+				}
+			],
+			"sid": 553241435762572
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Crab",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 958483973734684,
+							"parameters": {
+								"interval-seconds": "random(8,15)"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 692613524917180,
+							"parameters": {
+								"object-to-create": "Crab",
+								"layer": "0",
+								"x": "random(0, 320)",
+								"y": "random(0,180)",
+								"create-hierarchy": true,
+								"template-name": "\"\""
+							}
+						}
+					],
+					"sid": 936986598134280
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 465869800362638,
+							"parameters": {
+								"interval-seconds": "random(1,2)"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "move-to-position",
+							"objectClass": "Crab",
+							"sid": 586711089937140,
+							"behaviorType": "MoveTo",
+							"parameters": {
+								"x": "Player.X",
+								"y": "Player.Y",
+								"mode": "add-waypoint"
+							}
+						}
+					],
+					"sid": 448394916684357
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "Crab",
+							"sid": 220354744749077,
+							"parameters": {
+								"object": "Player"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "Player",
+							"sid": 424908559283611,
+							"parameters": {
+								"instance-variable": "healthCount",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-key",
+							"objectClass": "Dictionary",
+							"sid": 610672468292724,
+							"parameters": {
+								"key": "\"Health\"",
+								"value": "Player.healthCount"
+							}
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "healthBarTNT",
+							"sid": 167432528364310,
+							"parameters": {
+								"frame-number": "Dictionary.Get(\"Health\")"
+							}
+						},
+						{
+							"id": "spawn-another-object",
+							"objectClass": "Crab",
+							"sid": 164061809439751,
+							"parameters": {
+								"object": "Explosion",
+								"layer": "0",
+								"image-point": "0",
+								"create-hierarchy": false
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "Crab",
+							"sid": 860832606324771
+						}
+					],
+					"sid": 525003323579914
+				}
+			],
+			"sid": 375888899846689
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Heart",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "oldHeart",
+							"sid": 882403593049540,
+							"parameters": {
+								"instance-variable": "heartCount",
+								"comparison": 0,
+								"value": "0"
+							}
+						},
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 593844523953142,
+							"parameters": {
+								"interval-seconds": "random(10,20)"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 589347141155786,
+							"parameters": {
+								"object-to-create": "oldHeart",
+								"layer": "0",
+								"x": "random(25,620)",
+								"y": "random(25,340)",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "add-to-instvar",
+							"objectClass": "oldHeart",
+							"sid": 716825316302835,
+							"parameters": {
+								"instance-variable": "heartCount",
+								"value": "1"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 851734733142867,
+							"parameters": {
+								"seconds": "random (10,20)"
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "oldHeart",
+							"sid": 363095489807199
+						}
+					],
+					"sid": 256179705708665
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "Player",
+							"sid": 395234670925033,
+							"parameters": {
+								"object": "oldHeart"
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 376026118448942,
+							"parameters": {
+								"first-value": "Player.healthCount",
+								"comparison": 3,
+								"second-value": "9"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "add-to-instvar",
+							"objectClass": "Player",
+							"sid": 464516444913982,
+							"parameters": {
+								"instance-variable": "healthCount",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-key",
+							"objectClass": "Dictionary",
+							"sid": 929180321305995,
+							"parameters": {
+								"key": "\"Health\"",
+								"value": "Player.healthCount"
+							}
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "healthBarTNT",
+							"sid": 746192013000142,
+							"parameters": {
+								"frame-number": "Dictionary.Get(\"Health\")"
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "oldHeart",
+							"sid": 238656240204691
+						},
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "oldHeart",
+							"sid": 625728779231986,
+							"parameters": {
+								"instance-variable": "heartCount",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 866940570859751
+				}
+			],
+			"sid": 731060328820514
+		}
+	],
+	"sid": 373545835010682
+}

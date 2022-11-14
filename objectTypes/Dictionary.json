@@ -1,0 +1,15 @@
+{
+	"name": "Dictionary",
+	"plugin-id": "Dictionary",
+	"sid": 130340635783911,
+	"isGlobal": true,
+	"instanceVariables": [
+		{
+			"name": "Timer",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 656891154354565
+		}
+	]
+}
